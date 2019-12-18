@@ -24,8 +24,9 @@ git_status () {
                  --short HEAD 2>/dev/null)"
     if [[ -n "$repo_info" ]]; then
         ref=$($git symbolic-ref HEAD 2>/dev/null)
-        git diff --no-ext-diff --quiet || dirty="*"
-        echo "%{$fg[yellow]%}(${ref#refs/heads/}${dirty})%{$reset_color%}"
+        git diff --no-ext-diff --quiet || w="*"
+        git diff --no-ext-diff --cached --quiet || w="*"
+        echo "%{$fg[yellow]%}(${ref#refs/heads/}${w})%{$reset_color%}"
     fi
 }
 
