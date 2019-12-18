@@ -3,9 +3,6 @@
 # shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/.dotfiles
 
-# your project folder that we can `c [tab]` to
-export PROJECTS=~/go/src/github.atl.pdrop.net/IVR/ivr-auth
-
 # Stash your environment variables in ~/.localrc. This means they'll stay out
 # of your main dotfiles repository (which may be public, like this one), but
 # you'll have access to them in your scripts.
@@ -48,3 +45,6 @@ bindkey '^P' history-substring-search-up
 bindkey '^N' history-substring-search-down
 bindkey '^[p' history-substring-search-up
 bindkey '^[n' history-substring-search-down
+
+# go directly to frequent directories
+cdpath=($GOPATH/src/github.atl.pdrop.net/IVR $GOPATH/src/github.atl.pdrop.net/IVR/ivr-auth $HOME/src)
