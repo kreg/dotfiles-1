@@ -1,8 +1,10 @@
+# -*- mode: shell-script -*-
+
 # shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/.dotfiles
 
 # your project folder that we can `c [tab]` to
-export PROJECTS=~/Code
+export PROJECTS=~/go/src/github.atl.pdrop.net/IVR/ivr-auth
 
 # Stash your environment variables in ~/.localrc. This means they'll stay out
 # of your main dotfiles repository (which may be public, like this one), but
@@ -40,11 +42,9 @@ done
 
 unset config_files
 
-# Better history
-# Credits to https://coderwall.com/p/jpj_6q/zsh-better-history-searching-with-arrow-keys
-autoload -U up-line-or-beginning-search
-autoload -U down-line-or-beginning-search
-zle -N up-line-or-beginning-search
-zle -N down-line-or-beginning-search
-bindkey "^[[A" up-line-or-beginning-search # Up
-bindkey "^[[B" down-line-or-beginning-search # Down
+# Even better history
+source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+bindkey '^P' history-substring-search-up
+bindkey '^N' history-substring-search-down
+bindkey '^[p' history-substring-search-up
+bindkey '^[n' history-substring-search-down

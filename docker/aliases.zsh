@@ -1,2 +1,6 @@
 alias d='docker $*'
 alias d-c='docker-compose $*'
+alias drac='for x in `docker ps -a -q`; do docker rm -vf $x; done'
+alias drec='for x in `docker ps -a -q --filter "status=exited"`; do docker rm -vf $x; done'
+alias drai='for x in `docker images -q`; do docker rmi -f $x; done'
+alias drdi='for x in `docker images -q --filter "dangling=true"`; do docker rmi -f $x; done'

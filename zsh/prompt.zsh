@@ -4,9 +4,9 @@ autoload colors && colors
 
 if (( $+commands[git] ))
 then
-  git="$commands[git]"
+    git="$commands[git]"
 else
-  git="/usr/bin/git"
+    git="/usr/bin/git"
 fi
 
 user_and_host_name() {
@@ -18,14 +18,15 @@ directory_name() {
 }
 
 git_status () {
-  if $(! $git status -s &> /dev/null)
-  then
-      echo ""
-  else
-      ref=$($git symbolic-ref HEAD 2>/dev/null)
-      git diff --no-ext-diff --quiet || dirty="*"
-      echo "%{$fg[yellow]%}(${ref#refs/heads/}${dirty})%{$reset_color%}"
-  fi
+    local repo_info
+    repo_info="$(git rev-parse --git-dir --is-inside-git-dir \
+                 --is-bare-repository --is-inside-work-tree \
+                 --short HEAD 2>/dev/null)"
+    if [[ -n "$repo_info" ]]; then
+        ref=$($git symbolic-ref HEAD 2>/dev/null)
+        git diff --no-ext-diff --quiet || dirty="*"
+        echo "%{$fg[yellow]%}(${ref#refs/heads/}${dirty})%{$reset_color%}"
+    fi
 }
 
 the_time () {
@@ -34,15 +35,11 @@ the_time () {
 
 # Prints the current kubectl context if applicable
 kube_prompt() {
-  local context ns
-  if [[ $(kubectl config view | grep "contexts: null") ]]
-  then
-    echo ""
-  else
-    context="$(kubectl config current-context 2>/dev/null)"
-    ns="$(kubectl config view -o "jsonpath={.contexts[?(@.name==\"$context\")].context.namespace}")" 
-    echo " using namespace %{$fg_bold[yellow]%}${ns}%{$reset_color%} in context %{$fg_bold[magenta]%}${context}%{$reset_color%}"
-  fi
+    local context ns
+    if [[ ! $(kubectl config view | grep "contexts: null") ]]; then
+        context="$(kubectl config current-context 2>/dev/null)"
+        echo "%{$fg_bold[magenta]%}${context}%{$reset_color%}"
+    fi
 }
 
 export PROMPT=$'$(user_and_host_name):$(directory_name) $(git_status) $(the_time)\n%# '
