@@ -1,2 +1,2 @@
 # run gpg agent
-gpg-agent --daemon
+# gpg-agent --daemon
