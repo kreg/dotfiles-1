@@ -105,10 +105,10 @@
   :ensure t
   :bind (("M-p" . ace-window)))
 
-(use-package afternoon-theme
-  :ensure t
-  :config
-  (load-theme 'afternoon t))
+;; (use-package afternoon-theme
+;;   :ensure t
+;;   :config
+;;   (load-theme 'afternoon t))
 
 (use-package beacon
   :ensure t

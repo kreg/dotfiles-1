@@ -10,12 +10,11 @@ else
 fi
 
 prompt_user_and_host_name() {
-    echo "%{$fg[red]%}%n%{$fg[white]%}@%{$fg[green]%}%m%{$reset_color%}"
+    echo "%F{#ff8A65}%n%F{#2196f3}@%F{#9ccc65}%m%f"
 }
 
 prompt_directory_name() {
-    # light sea green
-    echo "%F{#20b2aa}%~%f"
+    echo "%F{#84ffff}%~%f"
 }
 
 prompt_git_status () {
@@ -27,13 +26,12 @@ prompt_git_status () {
         ref=$($git symbolic-ref HEAD 2>/dev/null)
         git diff --no-ext-diff --quiet || w="*"
         git diff --no-ext-diff --cached --quiet || w="*"
-        # goldenrod
-        echo "%F{#daa520}(${ref#refs/heads/}${w})%f"
+        echo "%F{#ffcc80}(${ref#refs/heads/}${w})%f"
     fi
 }
 
 prompt_current_time () {
-    echo "%F{magenta}%*%f"
+    echo "%F{#b39ddb}%*%f"
 }
 
 # Prints the current kubectl context if applicable
@@ -90,7 +88,7 @@ prompt_pure_precmd() {
 
 prompt_exec_time() {
     # [[ -n $prompt_pure_cmd_exec_time ]] && echo '%F{brown}${prompt_pure_cmd_exec_time}%f'
-    echo "%F{#eedd82}${prompt_pure_cmd_exec_time}%f"
+    echo "%F{#ffe4b5}${prompt_pure_cmd_exec_time}%f"
 }
 
 prompt_setup() {
