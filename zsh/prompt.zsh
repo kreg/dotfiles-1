@@ -35,11 +35,11 @@ prompt_current_time () {
 }
 
 # Prints the current kubectl context if applicable
-kube_prompt() {
+prompt_kube() {
     local context ns
     if [[ ! $(kubectl config view | grep "contexts: null") ]]; then
         context="$(kubectl config current-context 2>/dev/null)"
-        echo "%{$fg_bold[magenta]%}${context}%{$reset_color%}"
+        echo "%F{#b39ddb}${context}%f"
     fi
 }
 
@@ -96,7 +96,7 @@ prompt_setup() {
     autoload -Uz add-zsh-hook
     add-zsh-hook preexec prompt_pure_preexec
     add-zsh-hook precmd prompt_pure_precmd
-    export PROMPT=$'$(prompt_success) $(prompt_current_time) $(prompt_exec_time)\n$(prompt_user_and_host_name):$(prompt_directory_name) $(prompt_git_status) \n%{$(iterm2_prompt_mark)%} '
+    export PROMPT=$'$(prompt_success) $(prompt_current_time) $(prompt_exec_time)\n$(prompt_user_and_host_name):$(prompt_directory_name) $(prompt_git_status)\n%{$(iterm2_prompt_mark)%} '
 }
 
 prompt_setup
