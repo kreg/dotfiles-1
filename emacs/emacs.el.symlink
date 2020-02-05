@@ -121,9 +121,7 @@
 
 (use-package company-lsp
   :ensure t
-  :after (company lsp-mode)
-  :config
-  (add-to-list 'company-backends 'company-lsp))
+  :commands company-lsp)
 
 (use-package copyright
   :config
@@ -291,9 +289,10 @@
 
 (use-package lsp-mode
   :ensure t
-  :hook ((go-mode . lsp)
-         (python-mode . lsp)
-         (rust-mode . lsp))
+  :commands (lsp lsp-deferred)
+  :hook ((go-mode . lsp-deferred)
+         (python-mode . lsp-deferred)
+         (rust-mode . lsp-deferred))
   :config
   (setenv "GO111module" "off")
   (define-key lsp-mode-map (kbd "C-c C-o i") 'lsp-find-implementation)
@@ -305,15 +304,13 @@
 
 (use-package lsp-ui
   :ensure t
-  :after (lsp-mode)
+  :commands lsp-ui-mode
   :init
   ;; (setq lsp-ui-doc-enable nil)
   ;; (setq lsp-ui-sideline-show-code-actions nil)
   ;; (setq lsp-ui-sideline-show-diagnostics nil)
   ;; (setq lsp-ui-sideline-show-hover nil)
   ;; (setq lsp-ui-sideline-show-symbol nil)
-  :hook ((lsp-mode . lsp-ui-mode)
-	 (lsp-mode . flycheck-mode))
   :config
   (setq lsp-prefer-flymake nil)
   (set-face-background 'lsp-ui-doc-background "dark slate blue"))
@@ -528,6 +525,9 @@
 (use-package yasnippet
   :ensure t
   :config
+  (define-key yas-minor-mode-map (kbd "<tab>") nil)
+  (define-key yas-minor-mode-map (kbd "TAB") nil)
+  (define-key yas-minor-mode-map (kbd "C-c y") 'yas-expand)
   (yas-global-mode 1))
 
 (use-package yaml-mode
