@@ -91,12 +91,20 @@ prompt_exec_time() {
     echo "%F{#ffe4b5}${prompt_pure_cmd_exec_time}%f"
 }
 
+pure_prompt() {
+    echo "%F{#9ccc65}>%f"
+}
+
 prompt_setup() {
     zmodload zsh/datetime
     autoload -Uz add-zsh-hook
     add-zsh-hook preexec prompt_pure_preexec
     add-zsh-hook precmd prompt_pure_precmd
-    export PROMPT=$'$(prompt_success) $(prompt_current_time) $(prompt_exec_time)\n$(prompt_user_and_host_name):$(prompt_directory_name) $(prompt_git_status)\n%{$(iterm2_prompt_mark)%} '
+    if [[ ${TERM_PROGRAM} == vscode ]]; then
+        export PROMPT=$'$(prompt_success) $(prompt_current_time) $(prompt_exec_time)\n$(prompt_user_and_host_name):$(prompt_directory_name) $(prompt_git_status)\n$(pure_prompt) '
+    else
+        export PROMPT=$'$(prompt_success) $(prompt_current_time) $(prompt_exec_time)\n$(prompt_user_and_host_name):$(prompt_directory_name) $(prompt_git_status)\n%{$(iterm2_prompt_mark)%} '
+    fi
 }
 
 prompt_setup

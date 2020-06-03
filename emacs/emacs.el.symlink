@@ -27,10 +27,12 @@
 
 ;; Use OSX-style super keys in terminals too. Requires mapping them in
 ;; terminal emulator as well.
+
+(global-set-key (kbd "s-l") 'goto-line)
 (unless (display-graphic-p)
   (progn
-    (global-set-key (kbd "s-u") 'revert-buffer)
-    (global-set-key (kbd "s-l") 'goto-line)))
+    (global-set-key (kbd "s-u") 'revert-buffer)))
+
 
 ;; replace y-e-s by y
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -124,12 +126,6 @@
   :ensure t
   :commands company-lsp)
 
-(use-package copyright
-  :config
-  (setq copyright-year-ranges t)
-  (add-hook 'prog-mode-hook
-            '(lambda() (add-hook 'before-save-hook 'copyright-update))))
-
 (use-package cua-base
   :config
   (setq cua-enable-cua-keys nil)             ; only used for rectangle editing
@@ -140,7 +136,8 @@
   (setq desktop-save-mode t))
 
 (use-package dockerfile-mode
-  :ensure t)
+  :ensure t
+  :config (add-to-list 'auto-mode-alist '("\\.df\\'" . dockerfile-mode)))
 
 (use-package ediff
   :config
@@ -294,11 +291,15 @@
   :hook ((go-mode . lsp-deferred)
          (python-mode . lsp-deferred)
          (rust-mode . lsp-deferred))
+  :init
+  (setq lsp-keymap-prefix "s-p")
   :config
+  (setq lsp-enable-file-watchers nil)
   (setenv "GO111module" "off")
   (define-key lsp-mode-map (kbd "C-c C-o i") 'lsp-find-implementation)
   (define-key lsp-mode-map (kbd "C-c C-o j") 'lsp-find-definition)
   (define-key lsp-mode-map (kbd "C-c C-o r") 'lsp-find-references)
+  (define-key lsp-mode-map (kbd "C-c C-o t") 'lsp-find-type-definition)
   ;; (setq lsp-clients-go-server-args '("-build-tags" "servicetest service"))
   (setq lsp-clients-go-imports-local-prefix "github.atl.pdrop.net")
   (setq lsp-gopls-build-flags ["-tags" "servicetest service"]))
@@ -515,6 +516,10 @@
          ([M-s-right] . windmove-right)
          ([M-s-up] . windmove-up)
          ([M-s-down] . windmove-down)))
+
+(use-package which-func
+  :config
+  (which-function-mode 1))
 
 (use-package window
   :bind (([up] . scroll-down-line)      ; already have C-p for previous-line
