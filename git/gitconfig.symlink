@@ -1,8 +1,6 @@
 # Local/private config goes in the include
 [include]
         path = ~/.gitconfig.local
-[hub]
-        protocol = https
 [alias]
         co = checkout
         promote = !$ZSH/bin/git-promote
@@ -32,3 +30,6 @@
         default = simple
 [credential]
 	helper = osxkeychain
+
+[url "git@github.atl.pdrop.net:"]
+        insteadOf = https://github.atl.pdrop.net
