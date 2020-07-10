@@ -39,8 +39,7 @@ done
 
 unset config_files
 
-# Even better history
-source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+# Even better history (assumes zsh-history-substring-search.zsh included already)
 bindkey '^P' history-substring-search-up
 bindkey '^N' history-substring-search-down
 bindkey '^[p' history-substring-search-up
