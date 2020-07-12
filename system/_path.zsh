@@ -6,5 +6,6 @@ case "$OSTYPE" in
         ;;
     *)
         export PATH="$HOME/bin:/usr/local/bin:/usr/local/sbin:$ZSH/bin:$PATH"
+        export GPG=gpg2
         ;;
 esac
