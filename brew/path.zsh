@@ -2,6 +2,6 @@ case "$OSTYPE" in
     darwin*)
     ;;
     *)
-        export PATH=/home/linuxbrew/.linuxbrew/bin:${PATH}
+        eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
         ;;
 esac
