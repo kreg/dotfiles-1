@@ -79,7 +79,7 @@
 (setq-default indicate-empty-lines t)
 (setq-default scroll-conservatively 1)
 (setq-default scroll-preserve-screen-position 1)
-(setq-default fill-column 110)
+;; (setq-default fill-column 110)
 (setq ring-bell-function 'ignore)
 
 ;; don't create temporary files or symlinks
