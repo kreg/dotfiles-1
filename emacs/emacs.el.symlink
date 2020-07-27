@@ -31,8 +31,9 @@
 (global-set-key (kbd "s-l") 'goto-line)
 (unless (display-graphic-p)
   (progn
-    (global-set-key (kbd "s-u") 'revert-buffer)))
-
+    (global-set-key (kbd "s-u") 'revert-buffer)
+    (define-key global-map [home] 'beginning-of-buffer)
+    (define-key global-map [end] 'end-of-buffer)))
 
 ;; replace y-e-s by y
 (defalias 'yes-or-no-p 'y-or-n-p)
