@@ -1,8 +1,6 @@
+alias e="emacsclient -a false"
 case "$OSTYPE" in
-    darwin*)
-        alias e="emacsclient -a false"
-        ;;
-    *)
-        alias e="TERM=xterm-24bit emacsclient -a false"
+    linux*)
+        alias emacs="TERM=xterm-24bit emacs"
         ;;
 esac
