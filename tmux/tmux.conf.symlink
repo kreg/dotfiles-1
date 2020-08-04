@@ -1,2 +1,8 @@
+# Remove SSH_AUTH_SOCK to disable tmux automatically resetting the variable
 set -g update-environment "DISPLAY SSH_ASKPASS SSH_AGENT_PID SSH_CONNECTION WINDOWID XAUTHORITY"
-set-environment -g SSH_AUTH_SOCK $HOME/.ssh/ssh-auth-sock.$HOSTNAME
+
+# Use a symlink to look up SSH authentication
+setenv -g SSH_AUTH_SOCK $HOME/.ssh/ssh_auth_sock
+
+# Use a 256-color terminal
+set -g default-terminal "screen-256color"
