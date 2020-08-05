@@ -46,4 +46,4 @@ bindkey '^[p' history-substring-search-up
 bindkey '^[n' history-substring-search-down
 
 # go directly to frequent directories
-cdpath=($GOPATH/src/github.atl.pdrop.net/IVR $GOPATH/src/github.atl.pdrop.net/iot $GOPATH/src/github.atl.pdrop.net/IVR/ivr-auth)
+cdpath=($GOPATH/src/github.atl.pdrop.net $GOPATH/src/github.atl.pdrop.net/IVR $GOPATH/src/github.atl.pdrop.net/iot $GOPATH/src/github.atl.pdrop.net/IVR/ivr-auth)
