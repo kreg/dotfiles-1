@@ -193,7 +193,9 @@
   (setq require-final-newline t)
   (add-hook 'hack-local-variables-hook
             (lambda () (when (derived-mode-p 'python-mode)
-                         (pyvenv-workon venv-name)
+                         (if (boundp 'venv-name)
+                             (pyvenv-workon venv-name)
+                           (call-interactively #'pyvenv-workon))
                          (lsp)))))
 
 (use-package flycheck
