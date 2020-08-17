@@ -190,13 +190,13 @@
   (setq confirm-kill-emacs 'y-or-n-p)
   (when (eq system-type 'darwin)
     (setq insert-directory-program "/usr/local/bin/gls")) ; use gnu ls which supports --dired
-  (setq require-final-newline t)
-  (add-hook 'hack-local-variables-hook
-            (lambda () (when (derived-mode-p 'python-mode)
-                         (if (boundp 'venv-name)
-                             (pyvenv-workon venv-name)
-                           (call-interactively #'pyvenv-workon))
-                         (lsp)))))
+  (setq require-final-newline t))
+  ;; (add-hook 'hack-local-variables-hook
+  ;;           (lambda () (when (derived-mode-p 'python-mode)
+  ;;                        (if (boundp 'venv-name)
+  ;;                            (pyvenv-workon venv-name)
+  ;;                          (call-interactively #'pyvenv-workon))
+  ;;                        (lsp)))))
 
 (use-package flycheck
   :ensure t
@@ -335,8 +335,8 @@
 
 (use-package material-theme
   :ensure t
-  :config)
-  ;; (load-theme 'material t))
+  :config
+  (load-theme 'material t))
 
 (defun multi-term-split-window-right ()
   (interactive)

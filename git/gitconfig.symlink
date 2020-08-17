@@ -33,6 +33,7 @@
 
 [url "git@github.atl.pdrop.net:"]
         insteadOf = https://github.atl.pdrop.net
+
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
