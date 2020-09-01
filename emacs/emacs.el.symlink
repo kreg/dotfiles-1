@@ -492,7 +492,7 @@
   :config
   (smex-initialize)
   :bind (("M-x" . smex)
-         ([f8] . smex)
+         ([f13] . smex)
          ("M-X" . smex-major-mode-commands)))
 
 (use-package terraform-mode
