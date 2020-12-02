@@ -7,7 +7,4 @@ set -g update-environment "DISPLAY SSH_ASKPASS SSH_AGENT_PID SSH_CONNECTION WIND
 setenv -g SSH_AUTH_SOCK $HOME/.ssh/ssh_auth_sock
 
 # Use a 256-color terminal
-set -g default-terminal "screen-256color"
-
-# clippety needs this
-set -g set-clipboard on
+set -g default-terminal "xterm-256color"
