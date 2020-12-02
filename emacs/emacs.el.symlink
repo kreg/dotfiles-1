@@ -25,13 +25,8 @@
 (global-unset-key "\C-x\C-z")           ; don't use this key to minimize
 (global-unset-key (kbd "s-p"))          ; don't use this key to print
 
-;; Use OSX-style super keys in terminals too. Requires mapping them in
-;; terminal emulator as well.
-
-(global-set-key (kbd "s-l") 'goto-line)
 (unless (display-graphic-p)
   (progn
-    (global-set-key (kbd "s-u") 'revert-buffer)
     (define-key global-map [home] 'beginning-of-buffer)
     (define-key global-map [end] 'end-of-buffer)))
 
@@ -119,6 +114,11 @@
   :ensure t
   :config
   (beacon-mode 1))
+
+(unless (display-graphic-p)
+  (use-package clipetty
+    :ensure t
+    :bind ("M-w" . clipetty-kill-ring-save)))
 
 (use-package company
   :ensure t

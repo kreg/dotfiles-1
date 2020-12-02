@@ -1,7 +1,7 @@
 # See https://blog.testdouble.com/posts/2016-11-18-reconciling-tmux-and-ssh-agent-forwarding/
 
 # Remove SSH_AUTH_SOCK to disable tmux automatically resetting the variable
-set -g update-environment "DISPLAY SSH_ASKPASS SSH_AGENT_PID SSH_CONNECTION WINDOWID XAUTHORITY"
+set -g update-environment "DISPLAY SSH_ASKPASS SSH_AGENT_PID SSH_CONNECTION WINDOWID XAUTHORITY SSH_TTY"
 
 # Use a symlink to look up SSH authentication
 setenv -g SSH_AUTH_SOCK $HOME/.ssh/ssh_auth_sock
