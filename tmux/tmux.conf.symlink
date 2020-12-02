@@ -8,3 +8,6 @@ setenv -g SSH_AUTH_SOCK $HOME/.ssh/ssh_auth_sock
 
 # Use a 256-color terminal
 set -g default-terminal "screen-256color"
+
+# clippety needs this
+set -g set-clipboard on
