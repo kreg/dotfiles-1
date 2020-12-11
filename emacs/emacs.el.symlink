@@ -115,10 +115,10 @@
   :config
   (beacon-mode 1))
 
-;; (unless (display-graphic-p)
-;;   (use-package clipetty
-;;     :ensure t
-;;     :bind ("M-w" . clipetty-kill-ring-save)))
+(unless (display-graphic-p)
+  (use-package clipetty
+    :ensure t
+    :bind ("M-w" . clipetty-kill-ring-save)))
 
 (use-package company
   :ensure t
@@ -337,7 +337,12 @@
 (use-package material-theme
   :ensure t
   :config
-  (load-theme 'material t))
+  (if (daemonp)
+      (add-hook 'after-make-frame-functions
+                (lambda (frame)
+                  (select-frame frame)
+                  (load-theme 'material t)))
+    (load-theme 'material t)))
 
 (defun multi-term-split-window-right ()
   (interactive)
