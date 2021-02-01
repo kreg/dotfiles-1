@@ -452,16 +452,6 @@
 (use-package restclient
   :ensure t)
 
-(use-package rust-mode
-  :ensure t
-  :config
-  (add-hook 'rust-mode-hook #'rust-enable-format-on-save)
-  (setq rust-format-on-save t))
-
-(use-package cargo
-  :ensure t
-  :after (rust-mode))
-
 (use-package rg
   :ensure t
   :config
@@ -529,6 +519,11 @@
 (use-package which-func
   :config
   (which-function-mode 1))
+
+(use-package which-key
+  :ensure t
+  :config
+  (which-key-mode))
 
 (use-package window
   :bind (([up] . scroll-down-line)      ; already have C-p for previous-line
