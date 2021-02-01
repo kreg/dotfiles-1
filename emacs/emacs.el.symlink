@@ -326,9 +326,9 @@
   :bind (("C-x g" . magit-status)))
 
 (use-package markdown-mode
-  :ensure t
-  :config
-  (setq markdown-command "~/.virtualenvs/emacs/bin/markdown_py -x mdx_gfm"))
+  :ensure t)
+  ;; :config
+  ;; (setq markdown-command "~/.virtualenvs/emacs/bin/markdown_py -x mdx_gfm"))
 
 (use-package markdown-preview
   :load-path (lambda () (list (markdown-preview-load-path)))
