@@ -325,15 +325,6 @@
   :ensure t
   :bind (("C-x g" . magit-status)))
 
-(use-package markdown-mode
-  :ensure t)
-  ;; :config
-  ;; (setq markdown-command "~/.virtualenvs/emacs/bin/markdown_py -x mdx_gfm"))
-
-(use-package markdown-preview
-  :load-path (lambda () (list (markdown-preview-load-path)))
-  :commands (mp-preview))
-
 (use-package material-theme
   :ensure t
   :config
@@ -343,45 +334,6 @@
                   (select-frame frame)
                   (load-theme 'material t)))
     (load-theme 'material t)))
-
-(defun multi-term-split-window-right ()
-  (interactive)
-  (split-window-right)
-  (other-window 1)
-  (multi-term))
-
-(defun multi-term-split-window-below ()
-  (interactive)
-  (split-window-below)
-  (other-window 1)
-  (multi-term))
-
-(use-package multi-term
-  :ensure t
-  :config
-  (setq term-unbind-key-list '("C-x" "C-c" "C-h" "C-y" "<ESC>"))
-  (setq term-bind-key-alist '(
-    ("C-c C-c" . term-interrupt-subjob)
-    ("C-c C-e" . term-send-esc)
-    ("C-c C-k" . term-char-mode)
-    ("C-c C-j" . term-line-mode)
-    ("C-p" . term-send-up)
-    ("C-n" . term-send-down)
-    ("C-m" . term-send-return)
-    ("C-y" . term-paste)
-    ("M-f" . term-send-forward-word)
-    ("M-b" . term-send-backward-word)
-    ("M-o" . term-send-backspace)
-    ("M-p" . term-send-up)
-    ("M-n" . term-send-down)
-    ("M-M" . term-send-forward-kill-word)
-    ("M-N" . term-send-backward-kill-word)
-    ("<C-backspace>" . term-send-backward-kill-word)
-    ("M-r" . term-send-reverse-search-history)
-    ("M-d" . term-send-delete-word)
-    ("M-," . term-send-raw)
-    ("C-c 2" . multi-term-split-window-below)
-    ("C-c 3" . multi-term-split-window-right))))
 
 (use-package nxml-mode
   :config
@@ -413,9 +365,6 @@
 (use-package pdrestclient
   :config (load "~/src/pdrestclient.el.tokens/tokens.el" 'noerror)
   :load-path (lambda () (list (pdrestclient-load-path))))
-
-(use-package projectile
-  :ensure t)
 
 (use-package protobuf-mode
   :ensure t
@@ -508,13 +457,8 @@
 (use-package windmove
   :ensure t
   :config
-  (setq windmove-wrap-around t)
-
-  ;; match iTerm2 bindings
-  :bind (([M-s-left] . windmove-left)
-         ([M-s-right] . windmove-right)
-         ([M-s-up] . windmove-up)
-         ([M-s-down] . windmove-down)))
+  (windmove-default-keybindings)
+  (setq windmove-wrap-around t))
 
 (use-package which-func
   :config
