@@ -137,6 +137,12 @@
   :config
   (setq desktop-save-mode t))
 
+; direnv mode allows automatic loading of direnv variables
+(use-package direnv
+  :ensure t
+  :config
+  (direnv-mode))
+
 (use-package dockerfile-mode
   :ensure t
   :config (add-to-list 'auto-mode-alist '("\\.df\\'" . dockerfile-mode)))
@@ -192,12 +198,6 @@
   (when (eq system-type 'darwin)
     (setq insert-directory-program "/usr/local/bin/gls")) ; use gnu ls which supports --dired
   (setq require-final-newline t))
-  ;; (add-hook 'hack-local-variables-hook
-  ;;           (lambda () (when (derived-mode-p 'python-mode)
-  ;;                        (if (boundp 'venv-name)
-  ;;                            (pyvenv-workon venv-name)
-  ;;                          (call-interactively #'pyvenv-workon))
-  ;;                        (lsp)))))
 
 (use-package flycheck
   :ensure t
@@ -299,7 +299,6 @@
   (setq lsp-keymap-prefix "s-p")
   :config
   (setq lsp-enable-file-watchers nil)
-  (setenv "GO111module" "off")
   (define-key lsp-mode-map (kbd "C-c C-o i") 'lsp-find-implementation)
   (define-key lsp-mode-map (kbd "C-c C-o j") 'lsp-find-definition)
   (define-key lsp-mode-map (kbd "C-c C-o r") 'lsp-find-references)
@@ -307,6 +306,7 @@
   ;; (setq lsp-clients-go-server-args '("-build-tags" "servicetest service"))
   (setq lsp-clients-go-imports-local-prefix "github.atl.pdrop.net")
   (setq lsp-gopls-build-flags ["-tags" "servicetest service"]))
+
 
 (use-package lsp-ui
   :ensure t
@@ -376,7 +376,6 @@
             (lambda () (c-add-style "my-style" my-protobuf-style t))))
 
 (use-package python
-  ;; :requires lsp-python-ms
   :bind (:map python-mode-map
               ("s-[" . python-indent-shift-left)
               ("s-]" . python-indent-shift-right))
