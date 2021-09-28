@@ -124,10 +124,6 @@
   :ensure t
   :bind (("C-M-i" . company-complete)))
 
-(use-package company-lsp
-  :ensure t
-  :commands company-lsp)
-
 (use-package cua-base
   :config
   (setq cua-enable-cua-keys nil)             ; only used for rectangle editing
@@ -307,6 +303,11 @@
   (setq lsp-clients-go-imports-local-prefix "github.atl.pdrop.net")
   (setq lsp-gopls-build-flags ["-tags" "servicetest service"]))
 
+(use-package lsp-pyright
+  :ensure t
+  :hook (python-mode . (lambda ()
+                         (require 'lsp-pyright)
+                         (lsp-deferred))))
 
 (use-package lsp-ui
   :ensure t
