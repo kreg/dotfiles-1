@@ -85,15 +85,6 @@
 (setq create-lockfiles nil)
 
 
-;; custom local packages
-(eval-and-compile
-  (defun markdown-preview-load-path ()
-    (concat (getenv "HOME") "/src/markdown-preview/")))
-
-(eval-and-compile
-  (defun pdrestclient-load-path ()
-    (concat (getenv "HOME") "/src/pdrestclient.el/")))
-
 ;; packages
 
 (use-package ace-jump-mode
@@ -364,8 +355,10 @@
               ("m" . my-babel-to-buffer)))
 
 (use-package pdrestclient
-  :config (load "~/src/pdrestclient.el.tokens/tokens.el" 'noerror)
-  :load-path (lambda () (list (pdrestclient-load-path))))
+  :load-path (lambda () (list (concat (getenv "HOME") "/src/pdrestclient.el/")))
+  :config
+  (load (concat (getenv "HOME") "/src/pdrestclient.el.tokens/tokens.el") 'noerror)
+  (org-babel-lob-ingest (concat (getenv "HOME") "/src/pdrestclient.el/setup.org")))
 
 (use-package protobuf-mode
   :ensure t
