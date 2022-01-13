@@ -103,7 +103,7 @@ prompt_setup() {
     if [[ ${TERM_PROGRAM} == vscode ]]; then
         export PROMPT=$'$(prompt_success) $(prompt_current_time) $(prompt_exec_time)\n$(prompt_user_and_host_name):$(prompt_directory_name) $(prompt_git_status)\n$(pure_prompt) '
     else
-        export PROMPT=$'$(prompt_success) $(prompt_current_time) $(prompt_exec_time)\n$(prompt_user_and_host_name):$(prompt_directory_name) $(prompt_git_status)\n%{$(iterm2_prompt_mark)%} '
+        export PROMPT=$'$(prompt_success) $(prompt_current_time) $(prompt_exec_time)\n$(prompt_user_and_host_name):$(prompt_directory_name) $(prompt_git_status)\n%{$(iterm2_prompt_mark)%}$(pure_prompt) '
     fi
 }
 
