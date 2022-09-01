@@ -9,4 +9,12 @@
 #         # alias emacs="TERM=xterm-24bit emacs"
 #         ;;
 # esac
-alias e=emacsclient
+case "$OSTYPE" in
+    linux*)
+           alias e="COLORTERM=truecolor emacsclient"
+           alias emacs="COLORTERM=truecolor emacs"
+           ;;
+    darwin*)
+            alias e=emacsclient
+        ;;
+esac
