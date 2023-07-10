@@ -183,7 +183,7 @@
   (setq auto-save-default nil)
   (setq confirm-kill-emacs 'y-or-n-p)
   (when (eq system-type 'darwin)
-    (setq insert-directory-program "/usr/local/bin/gls")) ; use gnu ls which supports --dired
+    (setq insert-directory-program "/opt/homebrew/bin/gls")) ; use gnu ls which supports --dired
   (setq require-final-newline t))
 
 (use-package flycheck
@@ -354,12 +354,6 @@
               ("\C-m" . my-babel-to-buffer)
               ("m" . my-babel-to-buffer)))
 
-(use-package pdrestclient
-  :load-path (lambda () (list (concat (getenv "HOME") "/src/pdrestclient.el/")))
-  :config
-  (load (concat (getenv "HOME") "/src/pdrestclient.el.tokens/tokens.el") 'noerror)
-  (org-babel-lob-ingest (concat (getenv "HOME") "/src/pdrestclient.el/setup.org")))
-
 (use-package protobuf-mode
   :ensure t
   :config
@@ -399,10 +393,6 @@
   :config
   (rg-enable-default-bindings))
 
-(use-package rust-playground
-  :ensure t
-  :after (rust-mode))
-
 (use-package scroll-bar
   :config
   (setq scroll-bar-mode nil))
@@ -432,10 +422,6 @@
   :bind (("M-x" . smex)
          ([f1] . smex)
          ("M-X" . smex-major-mode-commands)))
-
-(use-package terraform-mode
-  :ensure t
-  :config (add-to-list 'auto-mode-alist '("\\.tf\\'" . terraform-mode)))
 
 (use-package time
   :config
