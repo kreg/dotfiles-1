@@ -125,10 +125,10 @@
   (setq desktop-save-mode t))
 
 ; direnv mode allows automatic loading of direnv variables
-(use-package direnv
-  :ensure t
-  :config
-  (direnv-mode))
+;; (use-package direnv
+;;   :ensure t
+;;   :config
+;;   (direnv-mode))
 
 (use-package dockerfile-mode
   :ensure t
